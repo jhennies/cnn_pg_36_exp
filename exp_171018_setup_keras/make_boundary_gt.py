@@ -14,6 +14,9 @@ print(labels.shape)
 
 from skimage.segmentation import find_boundaries
 
+# This is the important step:
+# Computes the label boundaries in 2D for each slice individually
+# This could have been done in 3D by find_boundaries(labels) but the cnn will presumably be performed in 2D first
 boundaries = np.array([find_boundaries(labels[z]) for z in range(labels.shape[0])])
 
 plt.imshow(boundaries[20, :, :])
